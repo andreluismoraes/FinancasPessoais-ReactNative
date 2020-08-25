@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, Button } from "react-native";
 
 import { AuthContext } from "../../contexts/auth";
 
@@ -11,9 +11,7 @@ export default function Home() {
       <Text>Home</Text>
       <Text>{user && user.nome}</Text>
       <Text>{user && user.email}</Text>
-      <TouchableOpacity onPress={() => signOut()}>
-        <Text>Sair</Text>
-      </TouchableOpacity>
+      <Button title={"Sair da conta"} onPress={() => signOut()} />
     </View>
   );
 }

@@ -75,8 +75,9 @@ const AuthProvider = ({ children }) => {
   };
 
   const signOut = async () => {
-    await firebase.auth.signOut();
+    await firebase.auth().signOut();
     await AsyncStorage.clear();
+    setUser(null);
   };
 
   return (
