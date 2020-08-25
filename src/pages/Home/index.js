@@ -1,17 +1,37 @@
-import React, { useContext } from "react";
-import { View, Text, Button } from "react-native";
+import React, { useContext, useState } from "react";
+import HistoricoList from "../../Components/HistoricoList";
 
 import { AuthContext } from "../../contexts/auth";
+import Header from "../../Components/Header";
+
+import { Background, Container, Nome, Saldo, Title, List } from "./style";
 
 export default function Home() {
-  const { user, signOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [historico, setHistorico] = useState([
+    { key: "1", tipo: "receita", valor: 1200 },
+    { key: "2", tipo: "despesa", valor: 200 },
+    { key: "3", tipo: "receita", valor: 40 },
+    { key: "4", tipo: "receita", valor: 89.62 },
+    { key: "5", tipo: "despesa", valor: 500 },
+    { key: "", tipo: "despesa", valor: 310 },
+  ]);
 
   return (
-    <View>
-      <Text>Home</Text>
-      <Text>{user && user.nome}</Text>
-      <Text>{user && user.email}</Text>
-      <Button title={"Sair da conta"} onPress={() => signOut()} />
-    </View>
+    <Background>
+      <Header />
+      <Container>
+        <Nome>{user && user.nome}</Nome>
+        <Saldo>R$ 123,00</Saldo>
+      </Container>
+      <Title>Ultimas Movimentações</Title>
+
+      <List
+        showsVerticalScrollIndicator={false}
+        data={historico}
+        keyExtractor={(item) => item.key}
+        renderItem={({ item }) => <HistoricoList data={item} />}
+      />
+    </Background>
   );
 }
