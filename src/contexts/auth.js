@@ -74,9 +74,14 @@ const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
+  const signOut = async () => {
+    await firebase.auth.signOut();
+    await AsyncStorage.clear();
+  };
+
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, signUp, signIn, loading }}
+      value={{ signed: !!user, user, loading, signUp, signIn, signOut }}
     >
       {children}
     </AuthContext.Provider>
