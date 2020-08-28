@@ -5,11 +5,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import New from "../pages/New";
+import CustomDrawer from "../Components/CustomDrawer";
 
 const AppDrawer = createDrawerNavigator();
 
 const AppRoutes = () => (
   <AppDrawer.Navigator
+    drawerContent={(props) => <CustomDrawer {...props} />}
     drawerStyle={{
       backgroundColor: "#171717",
     }}

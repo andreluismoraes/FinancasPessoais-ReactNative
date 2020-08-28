@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     async function loadList() {
-      await firebase
+      firebase
         .database()
         .ref("users")
         .child(uid)
@@ -30,7 +30,7 @@ export default function Home() {
           setSaldo(snapshot.val().saldo);
         });
 
-      await firebase
+      firebase
         .database()
         .ref("historico")
         .child(uid)
@@ -40,7 +40,6 @@ export default function Home() {
         .limitToLast(10)
         .on("value", (snapshot) => {
           setHistorico([]);
-
           snapshot.forEach((childItem) => {
             const list = {
               key: childItem.key,
@@ -51,7 +50,6 @@ export default function Home() {
                 .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."),
               date: childItem.val().date,
             };
-
             setHistorico((oldArray) => [...oldArray, list].reverse());
           });
         });
@@ -131,7 +129,7 @@ export default function Home() {
         <TouchableOpacity onPress={handleShowPicker}>
           <Icon name="event" color="#fff" size={30} />
         </TouchableOpacity>
-        <Title> Ultimas movimentações </Title>
+        <Title>Ultimas movimentações - {newDate}</Title>
       </Area>
 
       <List

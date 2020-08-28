@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableWithoutFeedback, Text } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
-import { Container, Tipo, IconView, TipoText, ValorText, List } from "./style";
+import { Container, Tipo, IconView, TipoText, ValorText } from "./style";
 
 export default function HistoricoList({ data, deleteItem }) {
   return (
