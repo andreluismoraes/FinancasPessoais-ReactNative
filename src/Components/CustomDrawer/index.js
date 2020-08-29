@@ -9,8 +9,7 @@ import {
 import { AuthContext } from "../../contexts/auth";
 
 export default function CustomDrawer(props) {
-  const { user, signOut } = useContext(AuthContext);
-
+  const { user, signOut, photoPerfil } = useContext(AuthContext);
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -21,10 +20,15 @@ export default function CustomDrawer(props) {
         }}
       >
         <Image
-          source={require("../../../assets/favicon.png")}
+          source={
+            photoPerfil !== null
+              ? { uri: photoPerfil }
+              : require("../../../assets/favicon.png")
+          }
           style={{ width: 85, height: 85 }}
           resizeMode="contain"
         />
+
         <Text style={{ color: "#fff", fontSize: 18, marginTop: 5 }}>
           Bem Vindo
         </Text>

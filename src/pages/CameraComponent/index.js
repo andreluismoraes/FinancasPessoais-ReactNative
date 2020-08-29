@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Text, View, Modal, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
+import { AuthContext } from "../../contexts/auth";
 
 import {
   Container,
@@ -23,6 +24,7 @@ export default function CameraComponent() {
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const navigation = useNavigation();
+  const { setPhotoPerfil } = useContext(AuthContext);
 
   useEffect(() => {
     /**acessar a camera */
@@ -62,6 +64,7 @@ export default function CameraComponent() {
       .catch((error) => {
         console.log("err", error);
       });
+    setPhotoPerfil(photo);
     setOpen(false);
   };
 
