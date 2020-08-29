@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { View, Text, Image } from "react-native";
+
 import {
   DrawerItemList,
   DrawerContentScrollView,
@@ -9,6 +10,7 @@ import { AuthContext } from "../../contexts/auth";
 
 export default function CustomDrawer(props) {
   const { user, signOut } = useContext(AuthContext);
+
   return (
     <DrawerContentScrollView {...props}>
       <View
