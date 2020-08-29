@@ -43,5 +43,9 @@
     "babel-preset-expo": "~8.1.0",
     "react-native-dotenv": "^2.3.0"
   },
-  "private": true
+  "private": true,
+  "android": {
+    "package": "com.inzinformatica.financa",
+    "versionCode": 1
+  }
 }
