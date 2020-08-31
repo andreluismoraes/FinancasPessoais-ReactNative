@@ -40,9 +40,11 @@ const AuthProvider = ({ children }) => {
       uid: value.user.uid,
       email: value.user.email,
       nome: snapshot.val().nome,
+      /**adicionando campo photo */
+      foto: "data:image/jpg;base64," + snapshot.val().foto,
     };
-
     setUser(data);
+    setPhotoPerfil(data.foto);
     setLoading(false);
   };
 
@@ -57,12 +59,13 @@ const AuthProvider = ({ children }) => {
       .database()
       .ref("users")
       .child(value.user.uid)
-      .set({ saldo: 0, nome: nome });
+      .set({ saldo: 0, nome: nome, foto: null });
 
     const data = {
       uid: value.user.uid,
       email: value.user.email,
       nome: nome,
+      foto,
     };
 
     async function storageUser(data) {

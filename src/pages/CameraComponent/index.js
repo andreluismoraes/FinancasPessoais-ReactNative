@@ -5,6 +5,8 @@ import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../../contexts/auth";
+import * as FileSystem from "expo-file-system";
+import firebase from "../../services/firebaseConnection";
 
 import {
   Container,
@@ -24,7 +26,7 @@ export default function CameraComponent() {
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const navigation = useNavigation();
-  const { setPhotoPerfil } = useContext(AuthContext);
+  const { setPhotoPerfil, user } = useContext(AuthContext);
 
   useEffect(() => {
     /**acessar a camera */
@@ -57,15 +59,16 @@ export default function CameraComponent() {
   };
 
   const handleSavePicture = async (photo) => {
-    MediaLibrary.saveToLibraryAsync(photo)
-      .then(() => {
-        alert("Foto salva com sucesso!");
-      })
-      .catch((error) => {
-        console.log("err", error);
-      });
-    setPhotoPerfil(photo);
+    const base64 = await FileSystem.readAsStringAsync(photo, {
+      encoding: "base64",
+    });
+    setPhotoPerfil("data:image/png;base64," + base64);
+    alert("Foto cadastrada com sucesso");
     setOpen(false);
+    const data = await firebase.database().ref("users").child(user.uid).update({
+      foto: base64,
+    });
+    console.log(data);
   };
 
   const handleOpenAlbum = () => {
