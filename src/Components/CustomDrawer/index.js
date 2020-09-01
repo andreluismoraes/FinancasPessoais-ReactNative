@@ -38,7 +38,7 @@ export default function CustomDrawer(props) {
         </Text>
       </View>
 
-      <DrawerItemList navigation={"Camera"} {...props} />
+      <DrawerItemList {...props} />
 
       <DrawerItem
         {...props}
