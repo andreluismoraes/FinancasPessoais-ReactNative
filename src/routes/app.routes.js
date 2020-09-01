@@ -33,7 +33,6 @@ const AppRoutes = () => (
     <AppDrawer.Screen name="Home" component={Home} />
     <AppDrawer.Screen name="Registrar" component={New} />
     <AppDrawer.Screen name="Perfil" component={Profile} />
-
     <AppDrawer.Screen name="Tirar foto de Perfil" component={Camera} />
   </AppDrawer.Navigator>
 );

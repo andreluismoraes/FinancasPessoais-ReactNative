@@ -28,7 +28,7 @@ export default function SignUp() {
   return (
     <Background>
       <Container bahavior={Platform.OS === "ios" ? "padding" : ""} enabled>
-        <Logo source={require("../../../assets/favicon.png")} />
+        <Logo source={require("../../../assets/logo.jpg")} />
 
         <AreaInput>
           <Input

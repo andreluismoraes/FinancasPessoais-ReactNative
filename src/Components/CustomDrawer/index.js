@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, Text, Image } from "react-native";
 
 import {
@@ -10,7 +10,15 @@ import { AuthContext } from "../../contexts/auth";
 
 export default function CustomDrawer(props) {
   const { user, signOut, photoPerfil } = useContext(AuthContext);
-  const parts = user.foto.split("data:image/jpg;base64,");
+  const [part, setPart] = useState(null);
+
+  useEffect(() => {
+    if (user.foto !== null) {
+      const parts = user.foto.split("data:image/jpg;base64,");
+      setPart(parts);
+    }
+  }, []);
+
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -22,7 +30,7 @@ export default function CustomDrawer(props) {
       >
         <Image
           source={
-            parts[1] !== "undefined"
+            part !== null
               ? { uri: photoPerfil }
               : require("../../../assets/logo.jpg")
           }

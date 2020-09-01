@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
       uid: value.user.uid,
       email: value.user.email,
       nome: nome,
-      foto,
+      foto: null,
     };
 
     async function storageUser(data) {
