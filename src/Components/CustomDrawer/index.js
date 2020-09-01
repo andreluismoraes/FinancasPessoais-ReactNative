@@ -10,14 +10,6 @@ import { AuthContext } from "../../contexts/auth";
 
 export default function CustomDrawer(props) {
   const { user, signOut, photoPerfil } = useContext(AuthContext);
-  const [part, setPart] = useState(null);
-
-  useEffect(() => {
-    if (user.foto !== null) {
-      const parts = user.foto.split("data:image/jpg;base64,");
-      setPart(parts);
-    }
-  }, []);
 
   return (
     <DrawerContentScrollView {...props}>
@@ -30,7 +22,7 @@ export default function CustomDrawer(props) {
       >
         <Image
           source={
-            part !== null
+            photoPerfil !== ""
               ? { uri: photoPerfil }
               : require("../../../assets/logo.jpg")
           }
