@@ -6,7 +6,6 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import New from "../pages/New";
 import CustomDrawer from "../Components/CustomDrawer";
-//adicionado pagina camera
 import Camera from "../pages/CameraComponent";
 
 const AppDrawer = createDrawerNavigator();
@@ -33,7 +32,7 @@ const AppRoutes = () => (
     <AppDrawer.Screen name="Home" component={Home} />
     <AppDrawer.Screen name="Registrar" component={New} />
     <AppDrawer.Screen name="Perfil" component={Profile} />
-    <AppDrawer.Screen name="Tirar foto de Perfil" component={Camera} />
+    <AppDrawer.Screen name="Camera" component={Camera} />
   </AppDrawer.Navigator>
 );
 

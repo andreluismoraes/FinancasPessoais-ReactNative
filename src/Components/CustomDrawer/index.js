@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text, Image } from "react-native";
+import React, { useContext } from "react";
+import { View, Text } from "react-native";
+import ImagePerfil from "../ImagePerfil";
 
 import {
   DrawerItemList,
@@ -9,7 +10,7 @@ import {
 import { AuthContext } from "../../contexts/auth";
 
 export default function CustomDrawer(props) {
-  const { user, signOut, photoPerfil } = useContext(AuthContext);
+  const { user, signOut } = useContext(AuthContext);
 
   return (
     <DrawerContentScrollView {...props}>
@@ -20,15 +21,7 @@ export default function CustomDrawer(props) {
           marginTop: 25,
         }}
       >
-        <Image
-          source={
-            photoPerfil !== ""
-              ? { uri: photoPerfil }
-              : require("../../../assets/logo.jpg")
-          }
-          style={{ width: 85, height: 85 }}
-          resizeMode="contain"
-        />
+        <ImagePerfil />
 
         <Text style={{ color: "#fff", fontSize: 18, marginTop: 5 }}>
           Bem Vindo
@@ -45,7 +38,7 @@ export default function CustomDrawer(props) {
         </Text>
       </View>
 
-      <DrawerItemList {...props} />
+      <DrawerItemList navigation={"Camera"} {...props} />
 
       <DrawerItem
         {...props}

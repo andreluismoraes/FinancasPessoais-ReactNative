@@ -14,6 +14,7 @@ const AuthRoutes = () => (
       component={SignIn}
       options={{ headerShown: false }}
     />
+
     <AuthStack.Screen
       name="SignUp"
       component={SignUp}
