@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     loadStorage();
-  }, []);
+  }, [photoPerfil]);
 
   //logar usuario
   const signIn = async (email, password) => {

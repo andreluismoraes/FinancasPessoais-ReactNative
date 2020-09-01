@@ -13,6 +13,10 @@ export const Container = styled.KeyboardAvoidingView`
 
 export const Logo = styled.Image`
   margin-bottom: 15px;
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  margin-bottom: 40px;
 `;
 
 export const AreaInput = styled.View`

@@ -10,6 +10,7 @@ import { AuthContext } from "../../contexts/auth";
 
 export default function CustomDrawer(props) {
   const { user, signOut, photoPerfil } = useContext(AuthContext);
+  const parts = user.foto.split("data:image/jpg;base64,");
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -21,9 +22,9 @@ export default function CustomDrawer(props) {
       >
         <Image
           source={
-            photoPerfil !== null
+            parts[1] !== "undefined"
               ? { uri: photoPerfil }
-              : require("../../../assets/favicon.png")
+              : require("../../../assets/logo.jpg")
           }
           style={{ width: 85, height: 85 }}
           resizeMode="contain"

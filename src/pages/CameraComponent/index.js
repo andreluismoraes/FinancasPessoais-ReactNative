@@ -62,13 +62,12 @@ export default function CameraComponent() {
     const base64 = await FileSystem.readAsStringAsync(photo, {
       encoding: "base64",
     });
-    setPhotoPerfil("data:image/png;base64," + base64);
     alert("Foto cadastrada com sucesso");
     setOpen(false);
-    const data = await firebase.database().ref("users").child(user.uid).update({
+    await firebase.database().ref("users").child(user.uid).update({
       foto: base64,
     });
-    console.log(data);
+    setPhotoPerfil("data:image/jpg;base64," + base64);
   };
 
   const handleOpenAlbum = () => {
@@ -88,12 +87,7 @@ export default function CameraComponent() {
 
   return (
     <Container style={{ flex: 1 }}>
-      <Camera
-        style={{ flex: 1 }}
-        type={type}
-        // flashMode={Camera.Constants.FlashMode.auto}
-        ref={(ref) => setCameraRef(ref)}
-      >
+      <Camera style={{ flex: 1 }} type={type} ref={(ref) => setCameraRef(ref)}>
         <FlipBack>
           <FlipView>
             <ButtonFlip onPress={() => handleClickBack()}>
