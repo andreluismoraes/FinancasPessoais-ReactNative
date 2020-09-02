@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/auth";
 import Loading from "../Components/Loading";
 
 import AuthRoutes from "./auth.routes";
-import AppRoutes from "./app.routes";
+import NormalStack from "./normal.routes";
 
 const Routes = () => {
   const { signed, loading } = useContext(AuthContext);
@@ -12,7 +12,7 @@ const Routes = () => {
     return <Loading load={true} />;
   }
 
-  return signed ? <AppRoutes /> : <AuthRoutes />;
+  return signed ? <NormalStack /> : <AuthRoutes />;
 };
 
 export default Routes;
