@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import Roles from "../../Rules";
 
 import { Platform } from "react-native";
 
@@ -27,7 +28,10 @@ export default function SignIn() {
   const { signIn } = useContext(AuthContext);
 
   const handleLogin = () => {
-    signIn(email, password);
+    if (Roles(email, password) === "Verificado") {
+      signIn(email, password);
+    }
+    return;
   };
 
   return (

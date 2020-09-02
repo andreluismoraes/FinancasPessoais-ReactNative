@@ -4,6 +4,8 @@ import { Platform } from "react-native";
 
 import { AuthContext } from "../../contexts/auth";
 
+import Roles from "../../Rules";
+
 import {
   Background,
   Container,
@@ -17,12 +19,15 @@ import {
 export default function SignUp() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
 
   const { signUp } = useContext(AuthContext);
 
   const handleSignUp = () => {
-    signUp(email, senha, nome);
+    if (Roles(email, password) === "Verificado") {
+      signUp(email, password, nome);
+    }
+    return;
   };
 
   return (
@@ -55,8 +60,8 @@ export default function SignUp() {
             placeholder="Senha"
             autoCorret={false}
             autoCapitalize="none"
-            value={senha}
-            onChangeText={(text) => setSenha(text)}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}
           />
         </AreaInput>
