@@ -28,7 +28,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     const value = await firebase
       .auth()
-      .signInWithEmailAndPassword(email, password);
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        alert(error);
+        setLoading(false);
+      });
 
     const snapshot = await firebase
       .database()
@@ -74,14 +78,14 @@ const AuthProvider = ({ children }) => {
 
     storageUser(data);
     setUser(data);
-
     setLoading(false);
   };
 
   const signOut = async () => {
+    setUser(null);
+    setPhotoPerfil("");
     await firebase.auth().signOut();
     await AsyncStorage.clear();
-    setUser(null);
   };
 
   return (
