@@ -89,7 +89,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const sendEmail = async (email) => {
-    await firebase.auth().sendPasswordResetEmail(email);
+    await firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .catch((error) =>
+        alert(
+          "Não há usuario cadastrado com este email, clique em criar uma conta para se cadastrar"
+        )
+      );
   };
 
   return (

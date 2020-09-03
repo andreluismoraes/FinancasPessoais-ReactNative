@@ -27,7 +27,7 @@ export default function PassordRecovery() {
   const sendemail = () => {
     if (Roles(email) === "Verificado") {
       sendEmail(email);
-      alert("Senha enviada");
+      alert("Senha enviada com Sucesso");
       navigation.navigate("SignIn");
     }
   };
