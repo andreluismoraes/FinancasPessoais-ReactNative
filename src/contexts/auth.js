@@ -88,6 +88,10 @@ const AuthProvider = ({ children }) => {
     await AsyncStorage.clear();
   };
 
+  const sendEmail = async (email) => {
+    await firebase.auth().sendPasswordResetEmail(email);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -100,6 +104,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         signOut,
         setLoading,
+        sendEmail,
       }}
     >
       {children}

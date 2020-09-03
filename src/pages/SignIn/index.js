@@ -67,6 +67,10 @@ export default function SignIn() {
         <Link onPress={() => navigation.navigate("SignUp")}>
           <LinkText>Criar uma conta</LinkText>
         </Link>
+
+        <Link onPress={() => navigation.navigate("PasswordRecovery")}>
+          <LinkText>Esqueceu a Senha</LinkText>
+        </Link>
       </Container>
     </Background>
   );
